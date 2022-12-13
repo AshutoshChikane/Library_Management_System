@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>WELCOME {{user|upper}}</h2>
+{% if messages %}
+{% for msg in messages %}
+{{msg}}
+{% endfor %}
+<br>
+{% endif %}
+<button type="submit" class="btn btn-danger"><a href="{% url 'logout' %}">Logout</a></button>
+<div id="main" class="container row">
+    <form class="log col-3" action="" method="post" novalidate>
+        <h4 class="log-h1">Add New Book</h4>
+        <table class="container ">
+            {% csrf_token %}
+            {% for i in form%}
+            <tr>
+                <td class="sign-label">{{i.label_tag}}</td>
+                <td class="texts">{{i}}<h6 class="error">{{i.errors|striptags}}</h6>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+    <div class="col-9">
+        <div class="log">
+            <h4 class="log-h1">Book Status</h4>
+            <table class="tab">
+                <tr>
+                    <th>Book_id</th>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Quantity</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Alotted</th>
+                    <th>Remaining</th>
+                </tr>
+                {% for i in lis %}
+                <tr>
+                    <td>{{i.id}}</td>
+                    <td>{{i.Book}}</td>
+                    <td>{{i.Author}}</td>
+                    <td>{{i.Quantity}}</td>
+                    <td>
+                        <button type="submit" class="btn btn-primary"><a href="{% url 'bedit' i.id %}">Edit</a></button>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-danger"><a
+                                href="{% url 'bdelete' i.id %}">Delete</a></button>
+                    </td>
+                    <td>{{i.alotment}}</td>
+                    <td>{{i.combined}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

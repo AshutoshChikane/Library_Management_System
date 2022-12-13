@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<form class="log container col-6" action="" method="post" novalidate>
+    <h2 class="sign-h1">Register</h2>
+    {% csrf_token %}
+    <table class="container ">
+        {% for i in fm%}
+        <tr>
+            <td class="sign-label">{{i.label_tag}}</td>
+            <td class="texts">{{i}}<h6 class="error">{{i.errors|striptags}}</h6>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    {% if messages %}
+    {% for msg in messages %}
+    {{msg}}
+    {% endfor %}
+    <br>
+    {% endif %}
+    <button type="submit" class="btn btn-success">Signup</button>
+    <button type="submit" class="btn btn-primary"><a href="{% url 'signin' %}">Login</a></button>
+</form>
+{% endblock%}

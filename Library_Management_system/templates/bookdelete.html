@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content%}
+<h1 class="log col log-h1"> Confirm Delete Book?</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes</button>
+    <button type="submit" class="btn btn-warning"><a href="{% url 'addbooks' %}">NO</a></button>
+</form>
+{% endblock %}

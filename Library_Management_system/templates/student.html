@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %} <br>
+<div class="log container col-6 ">
+    <h4 class="log-h1">Books Available For Students</h4>
+    <table class="tab">
+        <tr>
+            <th>Book_id</th>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Available</th>
+        </tr>
+        {% for i in form %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.Book}}</td>
+            <td>{{i.Author}}</td>
+            <td>{{i.combined}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock %}
